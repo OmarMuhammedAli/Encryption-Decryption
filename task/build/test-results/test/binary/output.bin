@@ -1,20 +1,36 @@
 [1;31m
 Start test 1[0m
-> welcome to hyperskill
+> enc
+> Welcome to hyperskill!
 > 5
-bjqhtrj yt mdujwxpnqq
+\jqhtrj%yt%m~ujwxpnqq&
 [1;31m
 Start test 2[0m
-> treasure
-> 10
-dbokcebo
+> enc
+> Hello
+> 0
+Hello
 [1;31m
 Start test 3[0m
-+> qdvdqvrxqwxrxwpvrxspvxiqgdiqarairpbiqqid
-> 12
-(cphpchdjcijdjibhdjebhjucspucmdmudbnuccup
+> enc
+> 012345678
+> 1
+	123456789
 [1;31m
 Start test 4[0m
-> y
-> 10
-i
+> dec
+> \jqhtrj%yt%m~ujwxpnqq&
+> 5
+Welcome to hyperskill!
+[1;31m
+Start test 5[0m
+> dec
+> Hello
+> 0
+Hello
+[1;31m
+Start test 6[0m
+> dec
+> 222233334444
+> 1
+111122223333

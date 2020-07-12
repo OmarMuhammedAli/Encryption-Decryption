@@ -30,8 +30,9 @@ public class EncryptDecrypt {
         return this.entry;
     }
 
-    //Encrypts the entry by shifting all the its characters by a given key
-    public StringBuilder shiftEncryption(int key){
+    //Encrypts the entry by shifting all the its characters by a given key. The shifts happens for letters only
+    //Any letter can only be shifted to a letter, e.g. the letter 'z' with a key = 1 shifts to 'a'
+    public StringBuilder lettersOnlyShiftEncryption(int key){
         int dupKey = key;
         for (int i = 0; i < entry.length(); i++){
             if (Character.isLetter(entry.charAt(i))) {
@@ -40,16 +41,40 @@ public class EncryptDecrypt {
                         dupKey -= 26;
                     }
                     entry.setCharAt(i, LETTERS.charAt(LETTERS.indexOf(entry.charAt(i)) + dupKey));
-                    dupKey = key;
                 } else {
                     while ((UPPER_CASE.indexOf(entry.charAt(i)) + dupKey) > 25) {
                         dupKey -= 26;
                     }
                     entry.setCharAt(i, UPPER_CASE.charAt(UPPER_CASE.indexOf(entry.charAt(i)) + dupKey));
-                    dupKey = key;
                 }
+                dupKey = key;
             }
         }
         return entry;
     }
+
+    // Shift encrypts or decrypts all characters including spaces and special characters with a certain key according
+    // to the unicode table. To encrypt, enter the mode "enc". To decrypt, enter the mode "dec"
+    public StringBuilder unicodeShiftEncDec(String mode, int key){
+        if (mode.equals("enc")) {
+            shiftEncryption(key);
+        } else if (mode.equals("dec")) {
+            shiftDecryption(key);
+        }
+        else {
+            return new StringBuilder("Invalid mode!");
+        }
+        return entry;
+    }
+    private void shiftEncryption(int key){
+        for (int i =0; i < entry.length(); i++) {
+            entry.setCharAt(i, (char)(entry.charAt(i) + key));
+        }
+    }
+    private void shiftDecryption(int key){
+        for (int i =0; i < entry.length(); i++) {
+            entry.setCharAt(i, (char)(entry.charAt(i) - key));
+        }
+    }
+
 }
