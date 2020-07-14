@@ -6,6 +6,8 @@ public class EncryptDecrypt {
     final String UPPER_CASE = LETTERS.toUpperCase();
     final String REVERSED_UPPER_CASE = REVERSED_LETTERS.toUpperCase();
     private StringBuilder entry = new StringBuilder();
+    private String mode = "enc";
+    private int key = 0;
 
     public EncryptDecrypt(){}
     public EncryptDecrypt(StringBuilder entry){
@@ -76,5 +78,25 @@ public class EncryptDecrypt {
             entry.setCharAt(i, (char)(entry.charAt(i) - key));
         }
     }
+    //If the input is taken as a command from the console, invoke the following function
+    public StringBuilder commandEncDec(String[] args) {
+        for (int i = 0; i < args.length; i += 2){
+            String parameter = args[i];
+            switch (parameter){
+                case "-mode":
+                    this.mode = args[i + 1];
+                    break;
+                case "-key":
+                    this.key = Integer.parseInt(args[i + 1]);
+                    break;
+                case "-data":
+                    this.entry = new StringBuilder(args[i + 1]);
+                default:
+                    break;
 
+            }
+        }
+        this.entry = unicodeShiftEncDec(this.mode, this.key);
+        return this.entry;
+    }
 }
