@@ -1,5 +1,7 @@
 package encryptdecrypt;
 
+import java.util.Arrays;
+
 public class EncryptDecrypt {
     final String LETTERS ="abcdefghijklmnopqrstuvwxyz";
     final String REVERSED_LETTERS = "zyxwvutsrqponmlkjihgfedcba";
@@ -62,8 +64,7 @@ public class EncryptDecrypt {
             shiftEncryption(key);
         } else if (mode.equals("dec")) {
             shiftDecryption(key);
-        }
-        else {
+        } else {
             return new StringBuilder("Invalid mode!");
         }
         return entry;
@@ -91,6 +92,12 @@ public class EncryptDecrypt {
                     break;
                 case "-data":
                     this.entry = new StringBuilder(args[i + 1]);
+                case "-in":
+                    if (Arrays.asList(args).contains("-data")) {
+                        continue;
+                    } else {
+
+                    }
                 default:
                     break;
 
