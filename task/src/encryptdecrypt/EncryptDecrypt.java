@@ -124,7 +124,7 @@ public class EncryptDecrypt {
     //Reads the file specified by name after the parameter -in in the given command
     //Returns the read data
     private StringBuilder fileReader(String fileName) {
-        File file = new File("C:\\Users\\Omar\\IdeaProjects\\Encryption-Decryption\\files\\" + fileName);
+        File file = new File(fileName);
         try (Scanner input = new Scanner(file)) {
             while (input.hasNext()) {
                 entry.append(input.nextLine()).append("\r\n");
@@ -141,7 +141,7 @@ public class EncryptDecrypt {
     }
     //Writes the entry data to the file specified by name after the parameter -out in the given command
     private void fileWriter(StringBuilder entry, String fileName) {
-        File file = new File("C:\\Users\\Omar\\IdeaProjects\\Encryption-Decryption\\files\\" + fileName);
+        File file = new File(fileName);
         try (FileWriter writer = new FileWriter(file)) {
             writer.write(entry.toString());
         } catch (IOException e) {
