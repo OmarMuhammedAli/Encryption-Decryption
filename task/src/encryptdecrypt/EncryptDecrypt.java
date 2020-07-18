@@ -1,6 +1,12 @@
 package encryptdecrypt;
 
+import javax.imageio.IIOException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class EncryptDecrypt {
     final String LETTERS ="abcdefghijklmnopqrstuvwxyz";
@@ -80,7 +86,8 @@ public class EncryptDecrypt {
         }
     }
     //If the input is taken as a command from the console, invoke the following function
-    public StringBuilder commandEncDec(String[] args) {
+    public void commandEncDec(String[] args) {
+        int writeFileIndex = 0; //keeps the index of the file name (if exists) to write to later
         for (int i = 0; i < args.length; i += 2){
             String parameter = args[i];
             switch (parameter){
@@ -96,14 +103,49 @@ public class EncryptDecrypt {
                     if (Arrays.asList(args).contains("-data")) {
                         continue;
                     } else {
-
+                        this.entry = fileReader(args[i + 1]);
                     }
+                    break;
+                case "-out":
+                    writeFileIndex = i + 1;
+                    break;
                 default:
                     break;
-
             }
         }
         this.entry = unicodeShiftEncDec(this.mode, this.key);
+        if (Arrays.asList(args).contains("-out")) {
+            String fileName = args[writeFileIndex];
+            fileWriter(this.entry, fileName);
+        } else {
+            System.out.println(this.entry);
+        }
+    }
+    //Reads the file specified by name after the parameter -in in the given command
+    //Returns the read data
+    private StringBuilder fileReader(String fileName) {
+        File file = new File("C:\\Users\\Omar\\IdeaProjects\\Encryption-Decryption\\files\\" + fileName);
+        try (Scanner input = new Scanner(file)) {
+            while (input.hasNext()) {
+                entry.append(input.nextLine()).append("\r\n");
+            }
+        } catch (FileNotFoundException e) {
+           /* try (FileWriter writer = new FileWriter(file)) {
+                writer.write("");
+            } catch (IOException e1) {
+                System.out.println(e1.getMessage());
+            }*/
+            System.out.println(e.getMessage());
+        }
         return this.entry;
+    }
+    //Writes the entry data to the file specified by name after the parameter -out in the given command
+    private void fileWriter(StringBuilder entry, String fileName) {
+        File file = new File("C:\\Users\\Omar\\IdeaProjects\\Encryption-Decryption\\files\\" + fileName);
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(entry.toString());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
