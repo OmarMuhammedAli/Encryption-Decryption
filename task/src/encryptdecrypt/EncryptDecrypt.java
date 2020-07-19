@@ -8,10 +8,10 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class EncryptDecrypt {
-    final String LETTERS ="abcdefghijklmnopqrstuvwxyz";
-    final String REVERSED_LETTERS = "zyxwvutsrqponmlkjihgfedcba";
-    final String UPPER_CASE = LETTERS.toUpperCase();
-    final String REVERSED_UPPER_CASE = REVERSED_LETTERS.toUpperCase();
+    private final static String LETTERS ="abcdefghijklmnopqrstuvwxyz";
+    private final static String REVERSED_LETTERS = "zyxwvutsrqponmlkjihgfedcba";
+    private final static String UPPER_CASE = LETTERS.toUpperCase();
+    private final static String REVERSED_UPPER_CASE = REVERSED_LETTERS.toUpperCase();
     private StringBuilder entry = new StringBuilder();
     private String mode = "enc";
     private int key = 0;
