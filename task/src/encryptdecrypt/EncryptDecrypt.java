@@ -1,6 +1,5 @@
 package encryptdecrypt;
 
-import javax.imageio.IIOException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -18,12 +17,6 @@ public class EncryptDecrypt {
     private int key = 0;
 
     public EncryptDecrypt(){}
-    public EncryptDecrypt(StringBuilder entry){
-        this.entry = entry;
-    }
-    public void setEntry(StringBuilder entry) {
-        this.entry = entry;
-    }
 
     // Replaces each letter with the letter that is in the corresponding position from the end of
     // the English alphabet
@@ -130,11 +123,6 @@ public class EncryptDecrypt {
                 entry.append(input.nextLine()).append("\r\n");
             }
         } catch (FileNotFoundException e) {
-           /* try (FileWriter writer = new FileWriter(file)) {
-                writer.write("");
-            } catch (IOException e1) {
-                System.out.println(e1.getMessage());
-            }*/
             System.out.println(e.getMessage());
         }
         return this.entry;
