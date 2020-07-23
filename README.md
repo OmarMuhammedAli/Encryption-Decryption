@@ -19,11 +19,11 @@ How to use
 
 Once the the compilation is finished, the program can be run from the command line by navigating to \Encryption-Decryption-master\src and using the command `java encryptdecrypt.Main` in combination with any desired arguments (The order of the arguments does not matter).
 
-Several arguments can be entered depending on the specific operation you want to perform: `-key`, `-alg`, `-mode`, `-data`, `-in`, and `-out`. As mentioned, the order of the arguments is of little importance, however, they should be followed by the appropriate value.
+Several arguments can be entered depending on the specific operation you want to perform: `-key`, `-alg`, `-mode`, `-data`, `-in`, and `-out`. As mentioned, the order of the arguments is of little importance; however, they should be followed by the appropriate value.
 
 `-key`:
 
-The key is an integer value which represents the number of traversing moves that need to be applied on each character of the given text in order to complete the encryption/decryption process. If no `-key` argument is given, the key value defaults to zero and the text will not be changed.
+The key is an integer value which represents the number of traversing moves that need to be applied on each character of the given text in order to complete the encryption/decryption process. If no `-key` argument is given, the key value defaults to zero and the text will not be changed (unless the chosen algorithm is `reverse`; which does not require a key to encrypt/decrypt).
 
 `-alg`:
 
@@ -31,7 +31,7 @@ The algorithm used to encrypt/decrypt the text. The available algorithms current
 
 _Shift:_ Only alphabet characters will be shifted, retaining case (A-Z and a-z).
 
-_Reverse:_ Every alphabet character will be switched with the its alphabet character peer from the opposite direction of the alphabet (A -> Z, B -> Y,..), retaining case (A-Z and a-z). Non-alphabet charaters will remain unaffected.
+_Reverse:_ Every alphabet character will be switched with its alphabet character peer from the opposite direction of the alphabet (A -> Z, B -> Y,..), retaining case (A-Z and a-z). Non-alphabet charaters will remain unaffected.
 
 _Unicode:_ All characters are shifted and may become any unicode character.
 
