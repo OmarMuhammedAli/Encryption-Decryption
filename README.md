@@ -57,5 +57,5 @@ Notes:
 1 - More algorithms to Encrypt/Decrypt will be added in the future.
 
 
-2 - I will decide on a suitable design pattern and reorganize the code accordingly
+2 - I will decide on a suitable design pattern and reorganize the code accordingly.
 
