@@ -15,6 +15,7 @@ public class EncryptDecrypt {
     private StringBuilder entry = new StringBuilder();
     private String mode = "enc";
     private int key = 0;
+    private String alg = "shift";
 
     public EncryptDecrypt(){}
 
@@ -35,24 +36,18 @@ public class EncryptDecrypt {
 
     //Encrypts the entry by shifting all the its characters by a given key. The shifts happens for letters only
     //Any letter can only be shifted to a letter, e.g. the letter 'z' with a key = 1 shifts to 'a'
-    public StringBuilder lettersOnlyShiftEncryption(int key){
-        int dupKey = key;
-        for (int i = 0; i < entry.length(); i++){
-            if (Character.isLetter(entry.charAt(i))) {
-                if (Character.isLowerCase(entry.charAt(i))) {
-                    while ((LETTERS.indexOf(entry.charAt(i)) + dupKey) > 25) {
-                        dupKey -= 26;
-                    }
-                    entry.setCharAt(i, LETTERS.charAt(LETTERS.indexOf(entry.charAt(i)) + dupKey));
-                } else {
-                    while ((UPPER_CASE.indexOf(entry.charAt(i)) + dupKey) > 25) {
-                        dupKey -= 26;
-                    }
-                    entry.setCharAt(i, UPPER_CASE.charAt(UPPER_CASE.indexOf(entry.charAt(i)) + dupKey));
-                }
-                dupKey = key;
+    public StringBuilder caesarCipher(String mode, int key){
+        if (mode.equals("dec")) {
+            key = 26 - key;
+        }
+        for (int i = 0; i < entry.length(); i++) {
+            if (Character.isLowerCase(entry.charAt(i))) {
+                entry.setCharAt(i, (char)(((int)entry.charAt(i) + key - 97) % 26 + 97));
+            } else if (Character.isUpperCase(entry.charAt(i))) {
+                entry.setCharAt(i, (char)(((int)entry.charAt(i) + key - 65) % 26 + 65));
             }
         }
+
         return entry;
     }
 
@@ -102,11 +97,30 @@ public class EncryptDecrypt {
                 case "-out":
                     writeFileIndex = i + 1;
                     break;
+                case "-alg":
+                    this.alg = args[i + 1];
+                    break;
                 default:
                     break;
             }
         }
-        this.entry = unicodeShiftEncDec(this.mode, this.key);
+
+        switch (this.alg) {
+            case "shift":
+                this.entry = caesarCipher(this.mode, this.key);
+                break;
+            case "unicode":
+                this.entry = unicodeShiftEncDec(this.mode, this.key);
+                break;
+            case "reverse":
+                this.entry = reversedLettersEncryption();
+                break;
+            default:
+                break;
+        }
+
+
+        //this.entry = unicodeShiftEncDec(this.mode, this.key);
         if (Arrays.asList(args).contains("-out")) {
             String fileName = args[writeFileIndex];
             fileWriter(this.entry, fileName);
