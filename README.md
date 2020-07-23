@@ -54,6 +54,6 @@ The `-out` argument should be followed by a file path and name with a .txt exten
 
 Notes:
 ------
-1 - More algorithms to Encrypt/Decrypt will be added in the future.\n
+1 - More algorithms to Encrypt/Decrypt will be added in the future.\r\n
 2 - I will decide on a suitable design pattern and reorganize the code accordingly
 
